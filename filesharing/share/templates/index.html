@@ -5,13 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 101 Template</title>
+    <title> Share files instantly </title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1> Share all the files! XD </h1>
+
+    <div class="container">
+      <form method="POST" action= {% url 'upload' %} enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputFile">File input</label>
+          <input type="file" id="exampleInputFile" name="file">
+          <p class="help-block"> Select the file you wish to share </p>
+        </div>
+
+        <div class="form-group">
+          <label for="duration"> Set how long you want the file to be stored for </label>
+          <select class="form-control" id="duration" name="duration">
+            <option value="5m"> 5 Minutes </option>
+            <option value="1h"> 1 hour </option>
+            <option value="6h"> 6 hours </option>
+            <option value="14h"> 24 hours </option>
+            <option value="3d"> 3 days </option>
+          </select>
+          <p class="help-block"> After this period, the file will be deleted from the server and the link no longer useable </p>
+        </div>
+<!-- 
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Check me out
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+ -->
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
