@@ -8,9 +8,9 @@ from django.db import models
 # Create your models here.
 
 
-class UploadedFile(models.Model):
+class File(models.Model):
 
-    name = models.CharField(max_length=500, default="lol")
+    #name = models.CharField(max_length=500)
     #time_uploaded = models.DateTimeField()
     #duration = models.DurationField(default=timedelta(minutes=5))
     #expires = models.DateTimeField()
