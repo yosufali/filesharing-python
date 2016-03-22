@@ -9,9 +9,15 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
+    <style type="text/css">
+      .center {
+        text-align: center;
+      }
+    </style>
+
   </head>
   <body>
-    <h1> Share all the files! XD </h1>
+    <h1 class="center"> Share all the files! XD </h1>
 
     <div class="container">
       <form method="POST" action= {% url 'upload' %} enctype="multipart/form-data">
@@ -34,9 +40,10 @@
           <p class="help-block"> After this period, the file will be deleted from the server and the link no longer useable </p>
         </div>
 
-        {% load staticfiles %}
+<!--         {% load staticfiles %}
         <img src="{% static "share/car.jpg" %}" alt="My image">
-        
+ -->
+ 
 <!-- 
         <div class="checkbox">
           <label>
