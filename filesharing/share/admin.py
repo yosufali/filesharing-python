@@ -5,7 +5,7 @@ from share.models import File
 # Register your models here.
 
 class FileAdmin(admin.ModelAdmin):
-    fields = ["name"]
-    list_display = ["name", "file_link"]
+    fields = ["name", "date_uploaded", "time_uploaded"]
+    list_display = ["name", "date_uploaded", "time_uploaded", "file_link"]
 
 admin.site.register(File, FileAdmin)
