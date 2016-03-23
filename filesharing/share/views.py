@@ -8,7 +8,7 @@ from django.utils import timezone
 from share.models import File
 from share.forms import FileForm
 
-# Create your views here.
+from datetime import timedelta
 
 def index(request):
 
@@ -21,11 +21,13 @@ def upload_file(request):
         if form.is_valid():
             newfile = File(file=request.FILES['file'])
             newfile.name = request.FILES['file'].name
+
+            dur = request.POST['duration']
+            newfile.duration = get_duration(dur)
             newfile.save()
 
             # Redirect to the file list after POST
             return HttpResponseRedirect(reverse('upload'))
-            #return redirect('index')
     else:
         form = FileForm()  # A empty, unbound form
 
@@ -39,3 +41,16 @@ def upload_file(request):
         context_instance=RequestContext(request)
     )
 
+def get_duration(dur):
+    durations = {
+        '5m' : timedelta(minutes=5),
+        '1h' : timedelta(hours=1),
+        '6h' : timedelta(hours=6),
+        '24h' : timedelta(days=1),
+        '3d' : timedelta(days=3)
+    }
+
+    for d in durations:
+        if d == dur:
+            return durations[d]
+    return 0
