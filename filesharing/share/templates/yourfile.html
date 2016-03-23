@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Share files instantly </title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+      .center {
+        text-align: center;
+      }
+      .vertical-center {
+        min-height: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      .large {
+        font-size: 60px;
+      }
+      .space {
+        margin-top: 2%;
+        margin-bottom: 2%;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <h1 class="center"> Share all the files! XD </h1>
+
+    <div class="vertical-center">
+      <div class="container center">
+        <div class="row">
+          <div class="col-md-12 space">
+            <p> Here's your download for <b><u>{{file.name}}</u></b> </p>
+            <p> Click the icon below to download it </p>
+          </div>
+          <div class="col-md-12 space">
+            {% if file %}
+              <a href="{{file.file.url}}" download><span class="glyphicon glyphicon-download large"></span></a>
+            {% else %}
+                <p>No files.</p>
+            {% endif %}
+          </div>
+          <hr>
+          <div class="col-md-12 space">
+            <p> Click <a href="{% url 'index' %}">here</a> to upload and share your own file </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>

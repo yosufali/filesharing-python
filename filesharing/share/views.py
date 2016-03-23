@@ -16,6 +16,7 @@ def index(request):
 
 def upload_file(request):
     # Handle file upload
+    newfile = File()
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -27,17 +28,15 @@ def upload_file(request):
             newfile.save()
 
             # Redirect to the file list after POST
-            return HttpResponseRedirect(reverse('upload'))
+            #return HttpResponseRedirect(reverse('upload'))
     else:
         form = FileForm()  # A empty, unbound form
 
-    # Load file for the list page
-    files = File.objects.all()
-
-    # Render list page with the files
+    # Go to page with link to download
+    #TODO: Make url unique
     return render_to_response(
-        'list.html',
-        {'files': files, 'form': form},
+        'yourfile.html',
+        {'file': newfile, 'form': form},
         context_instance=RequestContext(request)
     )
 

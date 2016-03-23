@@ -9,3 +9,4 @@ class FileAdmin(admin.ModelAdmin):
     list_display = ["name", "date_uploaded", "time_uploaded", "duration","file_link"]
 
 admin.site.register(File, FileAdmin)
+
