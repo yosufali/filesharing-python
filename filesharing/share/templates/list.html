@@ -10,13 +10,13 @@
         {% if files %}
             <ul>
                 {% for file in files %}
-                    <li><a href="{{ document.file.url }}">{{ file.docfile.name }}</a></li>
+                    <li><a href="{{ file.file.url }}">{{ file.file.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
             <p>No files.</p>
         {% endif %}
-        
+
         <!-- Upload form. Note enctype attribute! -->
         <form action="{% url "upload" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}

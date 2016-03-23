@@ -4,4 +4,8 @@ from share.models import File
 
 # Register your models here.
 
-admin.site.register(File)
+class FileAdmin(admin.ModelAdmin):
+    fields = ["name"]
+    list_display = ["name", "file_link"]
+
+admin.site.register(File, FileAdmin)

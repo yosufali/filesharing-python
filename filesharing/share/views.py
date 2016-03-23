@@ -10,18 +10,9 @@ from share.forms import FileForm
 
 # Create your views here.
 
-
 def index(request):
 
     return render(request, 'index.html', {})
-
-# def upload_file(request):
-
-#     new_file = UploadedFile()
-#     #new_file.time_uploaded = timezone.now()
-#     new_file.file = request.POST['file']
-#     new_file.save()
-#     return redirect('index')
 
 def upload_file(request):
     # Handle file upload
@@ -29,20 +20,22 @@ def upload_file(request):
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
             newdoc = File(file=request.FILES['file'])
+            newdoc.name = request.FILES['file'].name
             newdoc.save()
 
-            # Redirect to the document list after POST
+            # Redirect to the file list after POST
             return HttpResponseRedirect(reverse('upload'))
             #return redirect('index')
     else:
         form = FileForm()  # A empty, unbound form
 
-    # Load documents for the list page
+    # Load file for the list page
     files = File.objects.all()
 
-    # Render list page with the documents and the form
+    # Render list page with the files
     return render_to_response(
         'list.html',
         {'files': files, 'form': form},
         context_instance=RequestContext(request)
     )
+
