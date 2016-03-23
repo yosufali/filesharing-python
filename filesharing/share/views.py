@@ -19,9 +19,9 @@ def upload_file(request):
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = File(file=request.FILES['file'])
-            newdoc.name = request.FILES['file'].name
-            newdoc.save()
+            newfile = File(file=request.FILES['file'])
+            newfile.name = request.FILES['file'].name
+            newfile.save()
 
             # Redirect to the file list after POST
             return HttpResponseRedirect(reverse('upload'))
