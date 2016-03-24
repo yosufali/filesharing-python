@@ -37,17 +37,19 @@
       <div class="container center">
         <div class="row">
           <div class="col-md-12 space">
-            <h1> Thank you for uploading: </h1>
-            <p> <b><u>{{file.name}}</u></b> <p>
-
-            <br>
-
-            <p> You can share it by copying the link below </p>
-            <p><b>localhost/download/{{download_url}}</b></p>
+            <p> Here's your download for <b><u>{{download.name}}</u></b> </p>
+            <p> Click the icon below to download it </p>
           </div>
-          
           <div class="col-md-12 space">
-            <p> Click <a href="{% url 'index' %}">here</a> to upload another file </p>
+            {% if download %}
+              <a href="{{file.download.url}}" download><span class="glyphicon glyphicon-download large"></span></a>
+            {% else %}
+                <p>No file here.</p>
+            {% endif %}
+          </div>
+          <hr>
+          <div class="col-md-12 space">
+            <p> Click <a href="{% url 'index' %}">here</a> to upload and share your own file </p>
           </div>
         </div>
       </div>

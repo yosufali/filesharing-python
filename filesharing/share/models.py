@@ -16,6 +16,7 @@ class File(models.Model):
     date_uploaded = models.DateField(default=datetime.datetime.now)
     time_uploaded = models.TimeField(default=timezone.now)
     duration = models.DurationField(default=timedelta())
+    urlname = models.CharField(max_length=10, unique=True)
     file = models.FileField(upload_to='files')
 
     def file_link(self):
