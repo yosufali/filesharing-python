@@ -13,9 +13,13 @@ from datetime import timedelta
 class File(models.Model):
 
     name = models.CharField(max_length=500)
-    date_uploaded = models.DateField(default=datetime.datetime.now)
-    time_uploaded = models.TimeField(default=timezone.now)
+
+    uploaded_at = models.DateTimeField(default=timezone.now)
+
     duration = models.DurationField(default=timedelta())
+
+    expires_at = models.DateTimeField(default=timezone.now() + timedelta(minutes=5))
+
     urlname = models.CharField(max_length=10, unique=True)
     file = models.FileField(upload_to='files')
 

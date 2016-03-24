@@ -27,7 +27,10 @@ def upload_file(request):
             newfile.urlname = generate_string()
 
             dur = request.POST['duration']
-            newfile.duration = get_duration(dur)
+            d = get_duration(dur) # returns the correct duration as a timedelta
+            newfile.duration = d
+            newfile.expires_at = newfile.uploaded_at + d
+
             newfile.save()
 
             # Redirect to the file list after POST
@@ -59,7 +62,7 @@ def generate_string():
     return ''.join(random.choice(string.ascii_uppercase) for _ in range(10))
 
 def serve_download_page(request, urltext):
-    
+
     file_to_download = File.objects.get(urlname=urltext)
 
     if file_to_download != None:
